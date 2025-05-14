@@ -1,0 +1,13 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  plugins:
+    - custom_lint
+
+custom_lint:
+  rules:
+    - riverpod_lint
+linter:
+  rules:
+    avoid_print: false
+    prefer_relative_imports: true
