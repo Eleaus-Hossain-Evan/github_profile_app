@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final goRouterProvider = Provider<GoRouter>((ref) {
+import '../../features/profile/presentation/screens/profile_screen.dart';
+
+part 'app_router.g.dart';
+
+@riverpod
+GoRouter router(Ref ref) {
   return GoRouter(
-    initialLocation: '/',
-    debugLogDiagnostics: true, // Enable for debugging
+    initialLocation: ProfileScreen.route,
+    debugLogDiagnostics: true,
     routes: [
-      // Define other routes here as the application grows
-      // For example, routes for repositories list, repository detail, etc.
+      GoRoute(
+        path: ProfileScreen.route,
+        name: ProfileScreen.route,
+        builder: (context, state) => const ProfileScreen(),
+      )
     ],
-    // Optional: Error handling for routes not found
     errorBuilder: (context, state) => Scaffold(
       appBar: AppBar(title: const Text('Error')),
       body: Center(child: Text('Page not found: ${state.error?.message}')),
     ),
   );
-});
+}

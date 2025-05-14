@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:native_dio_adapter/native_dio_adapter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:talker_dio_logger/talker_dio_logger.dart';
 
 part 'dio_provider.g.dart';
 
@@ -28,7 +30,16 @@ Dio dio(Ref ref) {
   final dio = Dio(options);
 
   // Example: Add an interceptor for logging or error handling
-  dio.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
+  dio.interceptors.add(
+    TalkerDioLogger(
+      settings: const TalkerDioLoggerSettings(
+        printRequestHeaders: true,
+        printResponseMessage: true,
+      ),
+    ),
+  );
+
+  dio.httpClientAdapter = NativeAdapter();
 
   return dio;
 }
