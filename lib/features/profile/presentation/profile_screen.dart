@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../common/widgets/widgets.dart';
-import '../../application/profile_controller.dart';
-import '../../domain/entity/user_profile_entity.dart';
+import '../../common/widgets/widgets.dart';
+import '../application/profile_controller.dart';
+import '../domain/entity/user_profile_entity.dart';
 
 class ProfileScreen extends HookConsumerWidget {
   static const String route = '/profile';

@@ -37,7 +37,7 @@ class DioService {
         return 'connection error';
       case DioExceptionType.unknown:
         return 'unknown';
-      }
+    }
   }
 
   static String _handleHttpError(DioException e) {
@@ -49,8 +49,7 @@ class DioService {
           400 => 'Bad request. Please try again.',
           401 => 'Unauthorized. Please log in again.',
           402 => '402 Payment Required',
-          403 =>
-            'Access denied. You don\'t have permission to access this resource.',
+          403 => 'Access denied. You don\'t have permission to access this resource.',
           404 => 'The requested resource was not found.',
           405 => 'Method Not Allowed',
           406 => 'Not Acceptable',

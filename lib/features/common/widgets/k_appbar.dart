@@ -61,11 +61,7 @@ class KAppBar extends StatelessWidget implements PreferredSizeWidget {
       bottom: bottom,
       elevation: elevation,
       shadowColor: shadowColor,
-      systemOverlayStyle: systemOverlayStyle ??
-          const SystemUiOverlayStyle(
-            statusBarColor: AppColors.primary200,
-            statusBarIconBrightness: Brightness.light,
-          ),
+      systemOverlayStyle: systemOverlayStyle,
       iconTheme: iconTheme,
       actionsIconTheme: actionsIconTheme,
       scrolledUnderElevation: scrolledUnderElevation,
