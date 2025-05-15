@@ -13,4 +13,9 @@ class RepositoryDetailRepositoryImpl implements IRepositoryDetailRepository {
 
     return repoData.toEntity();
   }
+
+  @override
+  Future<String?> fetchRepositoryReadme(String repoName) {
+    return _dataSource.fetchRepositoryReadme(repoName);
+  }
 }

@@ -5,6 +5,7 @@ import '../../../repositories/data/model/repository_model.dart';
 
 abstract interface class IRepositoryDetailDatasource {
   Future<RepositoryModel> fetchRepositoryDetail(String repoName);
+  Future<String?> fetchRepositoryReadme(String repoName);
 }
 
 class RepositoryDetailDatasource implements IRepositoryDetailDatasource {
@@ -20,19 +21,15 @@ class RepositoryDetailDatasource implements IRepositoryDetailDatasource {
     );
   }
 
-  Future<String?> fetchRepositoryReadme(String owner, String repoName) async {
-    try {
-      final response = await _dio.get(
-        'https://api.github.com/repos/$owner/$repoName/readme',
+  @override
+  Future<String?> fetchRepositoryReadme(String repoName) async {
+    return DioService.run(
+      request: () => _dio.get(
+        "${ApiEndpoint.repos}/${ApiEndpoint.userName}/$repoName/readme",
         options: Options(headers: {'Accept': 'application/vnd.github.html'}),
-      );
-      return response.data;
-    } on DioException catch (e) {
-      if (e.response?.statusCode == 404) {
-        return null; // README not found
-      }
-      throw Exception('Failed to fetch repository README: ${e.message}');
-    }
+      ),
+      parse: (data) => data as String?,
+    );
   }
 
   Future<List<Map<String, dynamic>>> fetchRepositoryCommits(

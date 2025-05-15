@@ -89,5 +89,27 @@ final repoNameProvider = AutoDisposeProvider<String>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef RepoNameRef = AutoDisposeProviderRef<String>;
+String _$repositoryReadmeHash() => r'd2f4bb2f8ee86c6ec79fc0074515af90b197911f';
+
+/// See also [repositoryReadme].
+@ProviderFor(repositoryReadme)
+final repositoryReadmeProvider = AutoDisposeFutureProvider<String?>.internal(
+  repositoryReadme,
+  name: r'repositoryReadmeProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$repositoryReadmeHash,
+  dependencies: <ProviderOrFamily>[repoNameProvider, repoDetailRepoProvider],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    repoNameProvider,
+    ...?repoNameProvider.allTransitiveDependencies,
+    repoDetailRepoProvider,
+    ...?repoDetailRepoProvider.allTransitiveDependencies
+  },
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef RepositoryReadmeRef = AutoDisposeFutureProviderRef<String?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

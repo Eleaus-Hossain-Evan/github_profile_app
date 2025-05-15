@@ -29,3 +29,9 @@ FutureOr<RepositoryEntity> repositoryDetail(Ref ref) async {
 String repoName(Ref ref) {
   throw UnimplementedError('Provider was not overridden');
 }
+
+@Riverpod(dependencies: [repoName, repoDetailRepo])
+FutureOr<String?> repositoryReadme(Ref ref) {
+  final repoName = ref.watch(repoNameProvider);
+  return ref.watch(repoDetailRepoProvider).fetchRepositoryReadme(repoName);
+}
