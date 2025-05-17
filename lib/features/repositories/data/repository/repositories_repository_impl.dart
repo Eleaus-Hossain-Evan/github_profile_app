@@ -16,7 +16,7 @@ class RepositoriesRepositoryImpl implements IRepositoriesRepository {
       );
       return repositoryModels.map((model) => model.toEntity()).toList();
     } catch (e) {
-      throw Exception('Failed to get user repositories: $e');
+      rethrow;
     }
   }
 }

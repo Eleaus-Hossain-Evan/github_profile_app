@@ -53,7 +53,7 @@ final repositoriesRepositoryProvider =
 typedef RepositoriesRepositoryRef
     = AutoDisposeProviderRef<IRepositoriesRepository>;
 String _$repositoriesControllerHash() =>
-    r'cbcc68d35974f0b5a6ed441fa4a8b9e9463f0366';
+    r'e48a6172c24d0e9bb4cbf3e588699e26fdc17d68';
 
 /// See also [RepositoriesController].
 @ProviderFor(RepositoriesController)
@@ -64,22 +64,6 @@ final repositoriesControllerProvider = AutoDisposeAsyncNotifierProvider<
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$repositoriesControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$RepositoriesController = AutoDisposeAsyncNotifier<PaginatedRepos>;
-String _$userListNotifierHash() => r'2ec61d1b23155b2c6e0ac655fe951c19927ccf1d';
-
-/// See also [UserListNotifier].
-@ProviderFor(UserListNotifier)
-final userListNotifierProvider = AutoDisposeAsyncNotifierProvider<
-    UserListNotifier, List<RepositoryEntity>>.internal(
-  UserListNotifier.new,
-  name: r'userListNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$userListNotifierHash,
   dependencies: <ProviderOrFamily>[repositoriesRepositoryProvider],
   allTransitiveDependencies: <ProviderOrFamily>{
     repositoriesRepositoryProvider,
@@ -87,22 +71,6 @@ final userListNotifierProvider = AutoDisposeAsyncNotifierProvider<
   },
 );
 
-typedef _$UserListNotifier = AutoDisposeAsyncNotifier<List<RepositoryEntity>>;
-String _$paginationLoadingHash() => r'83427e6949f69cc468a03d81e0326e028f404fb7';
-
-/// See also [PaginationLoading].
-@ProviderFor(PaginationLoading)
-final paginationLoadingProvider =
-    AutoDisposeNotifierProvider<PaginationLoading, bool>.internal(
-  PaginationLoading.new,
-  name: r'paginationLoadingProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$paginationLoadingHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$PaginationLoading = AutoDisposeNotifier<bool>;
+typedef _$RepositoriesController = AutoDisposeAsyncNotifier<PaginatedRepos>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -6,6 +6,7 @@ import '../data/data_sources/repositories_datasource.dart';
 import '../data/repository/repositories_repository_impl.dart'; // Adjusted import
 import '../domain/entity/repository_entity.dart';
 import '../domain/repository/repositories_repository.dart';
+import 'repositories_state.dart';
 
 part 'repositories_controller.g.dart';
 
@@ -20,11 +21,9 @@ IRepositoriesRepository repositoriesRepository(Ref ref) {
   return RepositoriesRepositoryImpl(dataSource);
 }
 
-const int _perPage = 10;
-
 // We need to pass the username to this controller.
 // A family modifier is suitable here.
-@riverpod
+@Riverpod(dependencies: [repositoriesRepository])
 class RepositoriesController extends _$RepositoriesController {
   static const _perPage = 10;
 
@@ -69,75 +68,4 @@ class RepositoriesController extends _$RepositoriesController {
       );
     });
   }
-}
-
-@Riverpod(dependencies: [repositoriesRepository])
-class UserListNotifier extends _$UserListNotifier {
-  int currentPage = 1;
-  late IRepositoriesRepository operatorsRepository;
-  bool noMoreItems = false;
-  @override
-  FutureOr<List<RepositoryEntity>> build() async {
-    operatorsRepository = ref.watch(repositoriesRepositoryProvider);
-    fetchInitialUsers();
-    return [];
-  }
-
-  Future<void> fetchInitialUsers() async {
-    state = const AsyncValue.loading();
-
-    state = await AsyncValue.guard(() async {
-      final result = await operatorsRepository.getUserRepositories(page: currentPage);
-      return result;
-    });
-  }
-
-  Future<void> fetchPaginatedUsers() async {
-    if (noMoreItems) return;
-    ref.read(paginationLoadingProvider.notifier).update(true);
-
-    state = await AsyncValue.guard(
-      () async {
-        final result = await operatorsRepository.getUserRepositories(page: currentPage);
-        final currentData = state.value ?? [];
-        currentPage++;
-        noMoreItems = result.length < 10;
-        return [...currentData, ...result];
-      },
-    );
-    ref.read(paginationLoadingProvider.notifier).update(false);
-  }
-
-  Future<void> refreshUsers() async {
-    currentPage = 1;
-    noMoreItems = false;
-    state = const AsyncValue.loading();
-
-    state = await AsyncValue.guard(() async {
-      final result = await operatorsRepository.getUserRepositories(page: currentPage);
-      return result;
-    });
-  }
-}
-
-@riverpod
-class PaginationLoading extends _$PaginationLoading {
-  @override
-  bool build() => false;
-
-  void update(bool value) {
-    state = value;
-  }
-}
-
-class PaginatedRepos {
-  final List<RepositoryEntity> items;
-  final int page;
-  final bool hasMore;
-
-  PaginatedRepos({
-    required this.items,
-    required this.page,
-    required this.hasMore,
-  });
 }

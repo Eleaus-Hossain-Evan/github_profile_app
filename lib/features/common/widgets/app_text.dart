@@ -10,7 +10,7 @@ class AppText extends StatelessWidget {
     this.fontSize,
     this.fontWeight,
     this.color = AppColors.text,
-    this.height,
+    this.height = 1,
     this.maxLines,
     this.textAlign,
     this.overflow,

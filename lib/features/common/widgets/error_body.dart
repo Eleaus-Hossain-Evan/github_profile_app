@@ -17,19 +17,28 @@ class ErrorBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Chip(
-        backgroundColor: context.color.errorContainer,
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
         padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
-        side: BorderSide(
+        decoration: BoxDecoration(
           color: context.color.errorContainer,
+          borderRadius: BorderRadius.circular(12.r),
         ),
-        avatar: Icon(
-          Icons.error,
-          color: context.color.error,
-        ),
-        label: AppText(
-          error.toString(),
-          color: context.color.error,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            6.verticalSpace,
+            Icon(
+              Icons.error,
+              color: context.color.error,
+            ),
+            12.verticalSpace,
+            AppText(
+              error.toString(),
+              color: context.color.error,
+              maxLines: null,
+            ),
+          ],
         ),
       ),
     );
