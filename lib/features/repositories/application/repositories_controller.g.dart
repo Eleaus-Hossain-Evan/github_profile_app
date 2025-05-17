@@ -53,27 +53,23 @@ final repositoriesRepositoryProvider =
 typedef RepositoriesRepositoryRef
     = AutoDisposeProviderRef<IRepositoriesRepository>;
 String _$repositoriesControllerHash() =>
-    r'8045e77c269fa0ed029a07bc081b34d3bbfc1302';
+    r'cbcc68d35974f0b5a6ed441fa4a8b9e9463f0366';
 
 /// See also [RepositoriesController].
 @ProviderFor(RepositoriesController)
 final repositoriesControllerProvider = AutoDisposeAsyncNotifierProvider<
-    RepositoriesController, PaginatedRepositoriesState>.internal(
+    RepositoriesController, PaginatedRepos>.internal(
   RepositoriesController.new,
   name: r'repositoriesControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$repositoriesControllerHash,
-  dependencies: <ProviderOrFamily>[repositoriesRepositoryProvider],
-  allTransitiveDependencies: <ProviderOrFamily>{
-    repositoriesRepositoryProvider,
-    ...?repositoriesRepositoryProvider.allTransitiveDependencies
-  },
+  dependencies: null,
+  allTransitiveDependencies: null,
 );
 
-typedef _$RepositoriesController
-    = AutoDisposeAsyncNotifier<PaginatedRepositoriesState>;
-String _$userListNotifierHash() => r'764a36cd084bd9c8270f74402a4c33d3bba95632';
+typedef _$RepositoriesController = AutoDisposeAsyncNotifier<PaginatedRepos>;
+String _$userListNotifierHash() => r'2ec61d1b23155b2c6e0ac655fe951c19927ccf1d';
 
 /// See also [UserListNotifier].
 @ProviderFor(UserListNotifier)
