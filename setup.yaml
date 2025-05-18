@@ -1,0 +1,39 @@
+flutter_launcher_icons:
+  ios: true
+  android: true
+  image_path_ios: "assets/icons/app-icon.png"
+  image_path_android: "assets/icons/app-icon.png"
+  adaptive_icon_background: "assets/icons/app-icon-android-background.png"
+  adaptive_icon_foreground: "assets/icons/app-icon.png"
+  remove_alpha_ios: true
+  # web:
+  #   generate: true
+  #   image_path: "assets/common/app-icon.png"
+
+flutter_native_splash:
+  color: "#F1F1F1"
+  # background_image: assets/icons/splash-background.png
+  image: "assets/icons/app-icon.png"
+  # branding: assets/branding-production.png
+  # branding_bottom_padding: 24
+  color_dark: "#1C1C1C"
+  image_dark: "assets/icons/app-icon.png"
+  # branding_dark: assets/branding-production.png
+
+  android_12:
+    image: assets/icons/app-icon.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/icons/app-icon.png
+    icon_background_color_dark: "#121212"
+
+  web: false
+
+package_rename_config:
+  android:
+    app_name: GitHub Profile
+    package_name: com.eleaus.gitHub_profile
+
+  ios:
+    app_name: GitHub Profile
+    bundle_name: GitHub Profile App
+    package_name: com.eleaus.gitHub_profile

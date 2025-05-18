@@ -91,7 +91,6 @@ lib/
 │   │   ├── domain/          # Entities, Repositories(Interface, Abstract classes)
 │   │   └── data/            # Repositories(implement), Data Sources, DTOs
 ├── core/                    # Shared core functionality (router, remote, theme, etc.)
-├── shared/                  # Shared components across features
 └── main.dart
 ```
 
