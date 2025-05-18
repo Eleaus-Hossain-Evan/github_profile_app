@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -43,7 +44,15 @@ class RepositoryHeader extends HookConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                AppText(repository.name, fontSize: 24),
+                AnimatedTextKit(
+                  isRepeatingAnimation: false,
+                  animatedTexts: [
+                    TyperAnimatedText(
+                      repository.name,
+                      textStyle: TextStyle(fontSize: 24),
+                    ),
+                  ],
+                ),
                 if (repository.description != null) ...[
                   const SizedBox(height: 8),
                   Text(

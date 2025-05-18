@@ -15,20 +15,14 @@ class RepositoryDetailScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-   
     return Scaffold(
       appBar: KAppBar(
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: () => ref.refresh(repositoryDetailProvider.future),
-          ),
-        ],
+        actions: [],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      body: RefreshIndicator.adaptive(
+        onRefresh: () => ref.refresh(repositoryDetailProvider.future),
+        child: ListView(
+          padding: const EdgeInsets.all(16.0),
           children: [
             RepositoryHeader(),
             // const SizedBox(height: 24),
